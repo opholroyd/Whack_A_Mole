@@ -1,0 +1,77 @@
+body {
+    background-image: url("./Grass.jpg");
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: #417432;
+    background-image: url("./soilBackground.jpg");
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+}
+
+.optionsBar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+}
+
+.score {
+    padding: 10px;
+}
+
+.sized {
+    margin: 10px;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    background-image: url("./soilBackground.jpg");
+    color: #fff;
+    font-size: 36px;
+    border: 1px solid white;
+}
+
+.gameTitle {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    color: #fff
+}
+
+.center {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    height: 1000px;
+    width: 100%;
+}
+
+.game {
+    display: grid;
+    grid-template-rows: 300px 300px ;
+    grid-template-columns: 300px 300px 300px;
+    /* background-color: #493019; */
+}
+
+.field {
+    display: grid;
+    align-self: end;
+}
+
+.moleChar {
+    display: flex;
+    justify-content: center;
+    z-index: -1;
+}
+
+.mole {
+    bottom: 200px;
+    position: relative;
+}
