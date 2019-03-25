@@ -7,6 +7,8 @@ let timeUp = false;
 let score = 0;
 let whack = new Audio('./sounds/whack.wav');
 let slap = new Audio('./sounds/slap.wav');
+let clink = new Audio('./sounds/impact.wav');
+let hit = new Audio('./sounds/hit.wav');
 
 function randTime(min, max) {
     return Math.round(Math.random() * (max - min)) + min;
@@ -55,7 +57,7 @@ function hit(e) {
     score++;
     this.parentNode.classList.remove('up');
     scoreBoard.textContent = score;
-    let sounds = [whack, slap];
+    let sounds = [whack, slap, hit, clink];
     let randSound = sounds[Math.floor(Math.random()*sounds.length )];
     randSound.load()
     randSound.play()
