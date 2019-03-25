@@ -1,79 +1,64 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
-const button = document.querySelector('#startBtn');
-let gameTimer;
-let timeLimit;
+const moles = document.querySelectorAll('.mole')
+let lastHole;
+let timeUp = false;
 let score = 0;
+let whack = new Audio('./sounds/whack.wav');
+let slap = new Audio('./sounds/slap.wav');
 
-const startBtn = document.getElementById("startBtn")
-const pauseBtn = document.getElementById("pauseBtn")
-
-let m1 = document.getElementById("m1");
-    m2 = document.getElementById("m2");
-    m3 = document.getElementById("m3");
-    m4 = document.getElementById("m4");
-    m5 = document.getElementById("m5");
-    m6 = document.getElementById("m6");
-
-
-const gameLoop = () => {
-    gameTimer = setInterval(() => moleHole(), 1000);
-    timeLimit = setTimeout(() => moleHole(), 20000);
+function randSound() {
+    let soundPlay = (Math.floor(Math.random) * 10);
+    console.log(soundPlay)
 }
 
-const moleHole = () => {
-    let hole = Math.floor(Math.random()*6)+1;
-            if (hole == 1) {
-                m1.classList.add('showMole');
-                setTimeout(() => m1.classList.remove('showMole'), 1000)
-            } else if (hole == 2) {
-                m2.classList.add('showMole');
-                setTimeout(() => m1.classList.remove('showMole'), 1000)
-            } else if (hole == 3) {
-                m3.classList.add('showMole');
-                setTimeout(() => m1.classList.remove('showMole'), 1000)
-            } else if (hole == 4) {
-                m4.classList.add('showMole');
-                setTimeout(() => m1.classList.remove('showMole'), 1000)
-            } else if (hole == 5) {
-                m5.classList.add('showMole');
-                setTimeout(() => m1.classList.remove('showMole'), 1000)
-            } else if (hole == 6) {
-                m6.classList.add('showMole');
-                setTimeout(() => m1.classList.remove('showMole'), 1000)
-            }
+function randTime(min, max) {
+    return Math.round(Math.random() * (max - min)) + min;
 }
 
-m1.addEventListener("click", () => {
-    document.getElementById("score").innerHTML = score += 1
-});
+const randHole = (holes) => {
+    const idx = Math.floor(Math.random() * holes.length);
+    const hole = holes[idx];
+    console.log(hole)
+    if(hole === lastHole) {
+        console.log("Reroll.");
+        return randHole(holes);
+    }
+    lastHole = hole;
+    return hole;
+}
 
-m2.addEventListener("click", () => {
-    document.getElementById("score").innerHTML = score+= 1
-});
+function peep() {
+    const time = randTime(500, 2000);
+    const hole = randHole(holes);
+    hole.classList.add('up');
+    setTimeout(() => {
+        hole.classList.remove('up');
+        if(!timeUp) peep();
+    }, time);
+}
 
-m3.addEventListener("click", () => {
-    document.getElementById("score").innerHTML = score += 1
-});
+function startGame() {
+    music = new Audio('./sounds/record-player.wav');
+    music.play();
+    scoreBoard.textContent = 0;
+    timeUp = false;
+    score = 0;
+    peep();
+    fireworks = new Audio('./sounds/fireworks.wav');
+    cheer = new Audio('./sounds/cheering.wav');
+    setTimeout(() => timeUp = true, 20000)
+    setTimeout(() => cheer.play() &&
+    fireworks.play() , 20000)
+}
 
-m4.addEventListener("click", () => {
-    document.getElementById("score").innerHTML = score+= 1
-});
+function hit(e) {
+    console.log
+    if(!e.isTrusted) return; // cheater!
+    score++;
+    this.parentNode.classList.remove('up');
+    scoreBoard.textContent = score;
+    randSound()
+}
 
-m5.addEventListener("click", () => {
-    document.getElementById("score").innerHTML = score += 1
-});
-
-m6.addEventListener("click", () => {
-    document.getElementById("score").innerHTML = score += 1
-});
-// m1.addEventListener("click", () => {
-//     m1.classList.remove('showMole')
-// });
-// const  () => {
-//     setTimeout(m1.classList.remove('showMole'), 2000)
-// }
-
-
-
-// startBtn.addEventListener('click', gameLoop());
+moles.forEach(mole => mole.addEventListener('click', hit));

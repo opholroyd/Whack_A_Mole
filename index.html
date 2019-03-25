@@ -2,85 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=0.4, user-scalable=0">
   <title>The Greatest Punch'Em'Up</title>
   <link href='https://fonts.googleapis.com/css?family=Amatic+SC:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <div class="header">
-    <div class="gameTitle">
-    <h1>Whack-A-Mole</h1>
-  </div></div>
 
-  
+    <div class="header">
+        <div class="gameTitle">
+        <h1>Whack-A-Mole!</h1>
+      </div>
+    </div>
 
   <div class="optionsBar">
-    <button id="startBtn" class="sized" onclick="gameLoop()">PLAY</button>
-    <p class="score sized">Score: <span class="score">0</span></p>
-    <button id="pauseBtn" class="sized">PAUSE</button>
-    
-  </div>
-  
-  <div class="muteContainer">
-      <audio src="./sounds/ambience.wav" id="my_audio" loop="loop"></audio>
-      <script type="text/javascript">
-        window.onload=function(){
-          document.getElementById("my_audio").play();
-        }
-      </script>
-  <div class="mute" id="mute"></div>
-  </div>
+      <button class="sized" onClick="startGame()" >START!</button>
+      <p class="sized">Score: <span class="score">0</span></p>
+      <button id="pauseBtn" class="mute" onClick="mute()">MUTE</button>
+    </div>
 
-<div class="center">
   <div class="game">
-
-    <div class="field field1">
-        <img class="molehole" src="./images/Mole_Whole.png" width="300px" height="150px">
-      <div class="moleChar">
-          <img class="mole" id="m1" src="./images/Mole.png" width="150px" height="150px">
-      </div>
+    <div class="hole hole1">
+      <div class="mole"></div>
     </div>
-
-    <div class="field field2">
-        <img class="molehole" src="./images/Mole_Whole.png" width="300px" height="150px">
-      <div class="moleChar">
-          <img class="mole" id="m2" src="./images/Mole.png" width="150px" height="150px">
-      </div>
+    <div class="hole hole2">
+      <div class="mole"></div>
     </div>
-
-    <div class="field field3">
-        <img class="molehole" src="./images/Mole_Whole.png" width="300px" height="150px">
-        <div class="moleChar">
-          <img class="mole" id="m3" src="./images/Mole.png" width="150px" height="150px">
-        </div>
+    <div class="hole hole3">
+      <div class="mole"></div>
     </div>
-
-    <div class="field field4">
-        <img class="molehole" src="./images/Mole_Whole.png" width="300px" height="150px">
-        <div class="moleChar">
-            <img class="mole" id="m4" src="./images/Mole.png" width="150px" height="150px">
-          </div>
+    <div class="hole hole4">
+      <div class="mole"></div>
     </div>
-
-    <div class="field field5">
-        <img class="molehole" src="./images/Mole_Whole.png" width="300px" height="150px">
-        <div class="moleChar">
-            <img class="mole" id="m5" src="./images/Mole.png" width="150px" height="150px">
-          </div>
+    <div class="hole hole5">
+      <div class="mole"></div>
     </div>
-
-    <div class="field field6">
-        <img class="molehole" src="./images/Mole_Whole.png"  width="300px" height="150px">
-        <div class="moleChar">
-            <img class="mole" id="m6" src="./images/Mole.png" width="150px" height="150px">
-          </div>
+    <div class="hole hole6">
+      <div class="mole"></div>
     </div>
-
   </div>
-</div>
 
 <script src="app.js"></script>
-<script src="sound.js"> </script>
 
 </body>
 </html>
