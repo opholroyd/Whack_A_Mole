@@ -1,6 +1,7 @@
 const holes = document.querySelectorAll('.hole');
 const scoreBoard = document.querySelector('.score');
 const moles = document.querySelectorAll('.mole')
+const btn = document.getElementById("startBtn");
 let lastHole;
 let timeUp = false;
 let score = 0;
@@ -34,6 +35,7 @@ function peep() {
 }
 
 function startGame() {
+    btn.disabled = true;
     music = new Audio('./sounds/ambience.wav');
     music.play();
     music.volume = 0.1
@@ -44,6 +46,7 @@ function startGame() {
     let cheering = new Audio('./sounds/cheering.wav');
     setTimeout(() => timeUp = true, 15000);
     setTimeout(() => cheering.play(), 15000)
+    setTimeout(() => btn.disabled = false, 15000)
 }
 
 function hit(e) {

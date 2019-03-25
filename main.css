@@ -98,6 +98,8 @@ html {
   }
   
   .hole {
+    display: flex;
+    justify-content: center;
     flex: 1 0 33.33%;
     overflow: hidden;
     position: relative;
@@ -128,5 +130,8 @@ html {
   }
   
   .hole.up .mole{
+    display: flex;
+    justify-content: center;
+    align-content: center;
     top: 0;
   }
