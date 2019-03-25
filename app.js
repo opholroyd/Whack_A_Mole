@@ -7,11 +7,6 @@ let score = 0;
 let whack = new Audio('./sounds/whack.wav');
 let slap = new Audio('./sounds/slap.wav');
 
-function randSound() {
-    let soundPlay = (Math.floor(Math.random) * 10);
-    console.log(soundPlay)
-}
-
 function randTime(min, max) {
     return Math.round(Math.random() * (max - min)) + min;
 }
@@ -39,17 +34,16 @@ function peep() {
 }
 
 function startGame() {
-    music = new Audio('./sounds/record-player.wav');
+    music = new Audio('./sounds/ambience.wav');
     music.play();
+    music.volume = 0.1
     scoreBoard.textContent = 0;
     timeUp = false;
     score = 0;
     peep();
-    fireworks = new Audio('./sounds/fireworks.wav');
-    cheer = new Audio('./sounds/cheering.wav');
-    setTimeout(() => timeUp = true, 20000)
-    setTimeout(() => cheer.play() &&
-    fireworks.play() , 20000)
+    let cheering = new Audio('./sounds/cheering.wav');
+    setTimeout(() => timeUp = true, 15000);
+    setTimeout(() => cheering.play(), 15000)
 }
 
 function hit(e) {
@@ -58,7 +52,10 @@ function hit(e) {
     score++;
     this.parentNode.classList.remove('up');
     scoreBoard.textContent = score;
-    randSound()
+    let sounds = [whack, slap];
+    let randSound = sounds[Math.floor(Math.random()*sounds.length )];
+    randSound.load()
+    randSound.play()
 }
 
 moles.forEach(mole => mole.addEventListener('click', hit));
